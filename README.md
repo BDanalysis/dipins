@@ -15,13 +15,21 @@ Table of Contents
 1.Folder information
 --------------------------------------------------------------------------------
 When you download the ERINS software package, you will see that there are three directories.
+
 1.DIPins
+
 This directory contains the DIPins program.
+
 2.example
+
 This directory contains example files, including two pair of fastq files and a reference sequence file.
+
 3.run
+
 This directory contains the running script. If you want to do the insertion detection, run runGui.sh to Start a Gui
+
 4.software
+
 This directory contains two software that depends on it.
 
 
