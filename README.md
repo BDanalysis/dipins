@@ -29,7 +29,15 @@ This directory contains two software that depends on it.
 --------------------------------------------------------------------------------
 2.Usage of DIPins
 --------------------------------------------------------------------------------
-
+In Gui：
+（1）FASTA File：the input fast file（eg:*.fa or *.fasta）
+（2）FASTQ File1：the input fastq  file 1(eg:*.fq or *.fastq)
+（3）FASTQ File2：the input fastq  file 2(eg:*.fq or *.fastq)
+（4）Output Directory：the output directory.The resulting files will be placed in this folder(insert_result.txt).
+（5）Cache Directory：temp directory for DIPins running
+（6）BWA Directory：Third-party software bwa folder
+（7）Seqtk Directory：Third-party software seqtk folder
+（8) Chr：the detection chr name（eg：chr21）
 
 
 
