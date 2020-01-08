@@ -39,21 +39,21 @@ This directory contains two software that depends on it.
 --------------------------------------------------------------------------------
 In Gui：
 
-（1）FASTA File：the input fast file（eg:*.fa or *.fasta）
+(1)FASTA File：the input fast file（eg:*.fa or *.fasta）
 
-（2）FASTQ File1：the input fastq  file 1(eg:*.fq or *.fastq)
+(2)FASTQ File1：the input fastq  file 1(eg:*.fq or *.fastq)
 
-（3）FASTQ File2：the input fastq  file 2(eg:*.fq or *.fastq)
+(3)FASTQ File2：the input fastq  file 2(eg:*.fq or *.fastq)
 
-（4）Output Directory：the output directory.The resulting files will be placed in this folder(insert_result.txt).
+(4)Output Directory：the output directory.The resulting files will be placed in this folder(insert_result.txt).
 
-（5）Cache Directory：temp directory for DIPins running
+(5)Cache Directory：temp directory for DIPins running
 
-（6）BWA Directory：Third-party software bwa folder
+(6)BWA Directory：Third-party software bwa folder
 
-（7）Seqtk Directory：Third-party software seqtk folder
+(7)Seqtk Directory：Third-party software seqtk folder
 
-（8) Chr：the detection chr name（eg：chr21）
+(8)Chr：the detection chr name（eg：chr21）
 
 
 
@@ -66,7 +66,7 @@ insertion_result.txt has a total of five columns
 
 (2)：the position where the mutation occurred
 
-(3)：Because it is an insertiion variation, the position is the same as the second column
+(3)：the length of mutation
 
 (4)：Sequence information without mutation
 
