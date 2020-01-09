@@ -66,9 +66,6 @@ public class FindUnmatchName {
 		bw1.close();
 	}
 
-	public static void main(String[] args) throws IOException {
-		FindUnmatchName f = new FindUnmatchName();
-		f.findunmatchname("/media/xie/0009A639000F3A82/ins/test3/test3.sam", "/media/xie/0009A639000F3A82/ins/test3/unmatchname.txt", 500);
-	}
+
 }
 

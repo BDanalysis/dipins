@@ -272,7 +272,7 @@ public class DIPinsGUI {
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
         EventQueue.invokeLater(() -> {
             try {
-                JFrame.setDefaultLookAndFeelDecorated(true);
+//                JFrame.setDefaultLookAndFeelDecorated(true);
 //                SubstanceCortex.GlobalScope.setUseThemedDefaultIcons(true);
 //                UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceMistAquaLookAndFeel");
                 initGlobalFontSetting(new Font("DejaVuSansMono",Font.PLAIN,16));

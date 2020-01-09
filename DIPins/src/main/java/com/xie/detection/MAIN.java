@@ -1,13 +1,8 @@
 package com.xie.detection;
 
 import com.xie.output.MutationOutput;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.util.Properties;
 
 public class MAIN {
@@ -19,7 +14,7 @@ public class MAIN {
 		String fasta=args[0];
 		String fq1=args[1];
 		String fq2=args[2];
-		String tempdir=args[3];
+		String output=args[3];
 		String properties=args[4];
 		String chr=args[5];
 		Properties pps = new Properties();
@@ -30,8 +25,13 @@ public class MAIN {
 		    }catch (IOException e) {
 		    	e.printStackTrace();
 		        }
-		NoMsPositionRealign.temppath=pps.getProperty("tempdir");
-		NoMsPositionRealign.shdir=pps.getProperty("shdir");
+		String tempdir=pps.getProperty("tempdir")+"/DIPinstemp";
+		String bwa=pps.getProperty("bwa");
+		String seqtk=pps.getProperty("seqtk");
+		mkdir(tempdir);
+		makeSh(tempdir,bwa,seqtk);
+		NoMsPositionRealign.temppath=tempdir+"/temp";
+		NoMsPositionRealign.shdir=tempdir;
 		FastaToLow ftl=new FastaToLow();
 		ftl.tolow(fasta, tempdir+"/low.fa",chr);
 		ftl=null;
@@ -105,8 +105,11 @@ public class MAIN {
 			System.out.println("第"+i+"次迭代完成");
 			i++;
 		}
+		System.out.println("Iteration "+i+" complete");
 		MutationOutput mo=new MutationOutput();
-		mo.output(tempdir+"/"+i+".fa", tempdir+"/insert_result.txt");
+		mo.output(tempdir+"/"+i+".fa", output+"/insert_result.txt");
+		System.out.println("the result file path:"+output+"/insert_result.txt");
+		DeleteFile.deleteDirectory(tempdir);
 	}
 	
 	public   void bwash(String fasta,String fq1,String fq2,String out,String shdir) {
@@ -168,4 +171,102 @@ public class MAIN {
         }
         s=null;
 	}
+	private static void mkdir(String dir) {
+		File file =new File(dir);
+		if(file.isDirectory()){
+			DeleteFile.deleteDirectory(dir);
+		}
+		if(file.isFile()){
+			DeleteFile.deleteFile(dir);
+		}
+		if (!file .exists()) {
+			file.mkdir();
+		}
+	}
+
+	public static void makeSh(String shdir, String bwa, String seqtk) throws IOException, InterruptedException {
+		int core_number=Runtime.getRuntime().availableProcessors();
+		BufferedWriter bw1 = new BufferedWriter(new FileWriter(shdir + "/bwa_Y.sh"));
+		bw1.write("#!/bin/bash");
+		bw1.newLine();
+		bw1.write("fasta=$1");
+		bw1.newLine();
+		bw1.write("fq1=$2");
+		bw1.newLine();
+		bw1.write("fq2=$3");
+		bw1.newLine();
+		bw1.write("out=$4");
+		bw1.newLine();
+		bw1.write(bwa + " index $fasta");
+		bw1.newLine();
+		bw1.write(bwa + " mem -Y -t "+core_number+" $fasta $fq1 $fq2 > $out");
+		bw1.newLine();
+		bw1.flush();
+		bw1.close();
+		ProcessBuilder builder = new ProcessBuilder("/bin/chmod", "755", "./bwa_Y.sh");
+		builder.directory(new File(shdir));
+		Process process = builder.start();
+		process.waitFor();
+
+		bw1 = new BufferedWriter(new FileWriter(shdir + "/bwa.sh"));
+		bw1.write("#!/bin/bash");
+		bw1.newLine();
+		bw1.write("fasta=$1");
+		bw1.newLine();
+		bw1.write("fq1=$2");
+		bw1.newLine();
+		bw1.write("fq2=$3");
+		bw1.newLine();
+		bw1.write("out=$4");
+		bw1.newLine();
+		bw1.write(bwa + " index $fasta");
+		bw1.newLine();
+		bw1.write(bwa + " mem -t "+core_number+" $fasta $fq1 $fq2 > $out");
+		bw1.newLine();
+		bw1.flush();
+		bw1.close();
+		builder = new ProcessBuilder("/bin/chmod", "755", "./bwa.sh");
+		builder.directory(new File(shdir));
+		process = builder.start();
+		process.waitFor();
+
+		bw1 = new BufferedWriter(new FileWriter(shdir + "/bwa_noPositionRealign.sh"));
+		bw1.write("#!/bin/bash");
+		bw1.newLine();
+		bw1.write("fasta=$1");
+		bw1.newLine();
+		bw1.write("fq1=$2");
+		bw1.newLine();
+		bw1.write("fq2=$3");
+		bw1.newLine();
+		bw1.write(bwa + " index $fasta");
+		bw1.newLine();
+		bw1.write(bwa + " mem  $fasta $fq1 $fq2");
+		bw1.newLine();
+		bw1.flush();
+		bw1.close();
+		builder = new ProcessBuilder("/bin/chmod", "755", shdir + "/bwa_noPositionRealign.sh");
+		builder.directory(new File(shdir));
+		process = builder.start();
+		process.waitFor();
+
+		bw1 = new BufferedWriter(new FileWriter(shdir + "/seqtk.sh"));
+		bw1.write("#!/bin/bash");
+		bw1.newLine();
+		bw1.write("fq=$1");
+		bw1.newLine();
+		bw1.write("namelist=$2");
+		bw1.newLine();
+		bw1.write("out=$3");
+		bw1.newLine();
+		bw1.write(seqtk+" subseq $fq $namelist > $out");
+		bw1.newLine();
+		bw1.flush();
+		bw1.close();
+		builder = new ProcessBuilder("/bin/chmod", "755", shdir + "/seqtk.sh");
+		builder.directory(new File(shdir));
+		process = builder.start();
+		process.waitFor();
+	}
+
 }

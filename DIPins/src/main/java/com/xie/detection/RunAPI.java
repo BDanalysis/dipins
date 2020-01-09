@@ -62,8 +62,6 @@ public class RunAPI {
                     DeleteFile.delete(tempdir+"/"+i+"times.findh.sam");
                     DeleteFile.delete(tempdir+"/"+i+"times.findhtos.sam");
                     DeleteFile.delete(tempdir+"/"+i+"times.htos.sam");
-                    DeleteFile.delete(tempdir+"/"+i+"_r1.fq");
-                    DeleteFile.delete(tempdir+"/"+i+"_r2.fq");
                 }
                 if(flag==false) break;
 
@@ -97,12 +95,14 @@ public class RunAPI {
                 }
                 if(flag==false) break;
             }
-            jTextArea.append("第"+i+"次迭代完成\n");
             i++;
         }
+        System.out.println("Iteration "+i+" complete");
         MutationOutput mo=new MutationOutput();
         mo.output(tempdir+"/"+i+".fa", gunit.output+"/insert_result.txt");
-        jTextArea.append("the result:"+gunit.output+"/insert_result.txt\n");
+        System.out.println("the result file path:"+gunit.output+"/insert_result.txt");
+        DeleteFile.deleteDirectory(tempdir);
+
     }
 
     public   void bwash(String fasta,String fq1,String fq2,String out,String shdir) throws IOException {
@@ -165,7 +165,7 @@ public class RunAPI {
         s=null;
     }
     public void makeSh(String shdir,String bwa,String seqtk) throws IOException, InterruptedException {
-
+        int core_number=Runtime.getRuntime().availableProcessors();
         BufferedWriter bw1 = new BufferedWriter(new FileWriter(shdir + "/bwa_Y.sh"));
         bw1.write("#!/bin/bash");
         bw1.newLine();
@@ -179,7 +179,7 @@ public class RunAPI {
         bw1.newLine();
         bw1.write(bwa + " index $fasta");
         bw1.newLine();
-        bw1.write(bwa + " mem -Y  $fasta $fq1 $fq2 > $out");
+        bw1.write(bwa + " mem -Y -t "+core_number+" $fasta $fq1 $fq2 > $out");
         bw1.newLine();
         bw1.flush();
         bw1.close();
@@ -201,7 +201,7 @@ public class RunAPI {
         bw1.newLine();
         bw1.write(bwa + " index $fasta");
         bw1.newLine();
-        bw1.write(bwa + " mem  $fasta $fq1 $fq2 > $out");
+        bw1.write(bwa + " mem -t "+core_number+" $fasta $fq1 $fq2 > $out");
         bw1.newLine();
         bw1.flush();
         bw1.close();
@@ -221,7 +221,7 @@ public class RunAPI {
         bw1.newLine();
         bw1.write(bwa + " index $fasta");
         bw1.newLine();
-        bw1.write(bwa + " mem -t 8 $fasta $fq1 $fq2");
+        bw1.write(bwa + " mem  $fasta $fq1 $fq2");
         bw1.newLine();
         bw1.flush();
         bw1.close();
@@ -261,6 +261,8 @@ public class RunAPI {
             file.mkdir();
         }
     }
+
+
 
     public static void main(String[] args) throws Exception {
     }

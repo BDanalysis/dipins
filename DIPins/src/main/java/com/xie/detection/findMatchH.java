@@ -67,8 +67,5 @@ public class findMatchH {
 		br.close();
 		bw.close();
 	}
-	public static void main(String[] args) throws IOException {
-		findMatchH f=new findMatchH();
-		f.findmatchH("/media/xie/0009A639000F3A82/�ڲ��������/test1/test1.sam", "/media/xie/0009A639000F3A82/�ڲ��������/test1/findH.sam");
-	}
+
 }

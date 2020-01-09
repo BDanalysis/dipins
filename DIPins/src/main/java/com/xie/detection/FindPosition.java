@@ -189,8 +189,5 @@ public class FindPosition {
 //			System.out.println(ps.get(i).position+" "+ps.get(i).ms+" "+ps.get(i).sm);
 //		}
 	}
-	public static void main(String[] args) throws IOException {
-		FindPosition f=new FindPosition();
-		f.findposition("/media/xie/0009A639000F3A82/ins/102/20_1/1times.findhtos.sam", "/media/xie/0009A639000F3A82/ins/102/20_1/pos.txt");
-	}
+
 }

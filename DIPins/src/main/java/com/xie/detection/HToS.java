@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 public class HToS {
 
-	//将MH及HM转换为MS和SM后提取所有的MS、SM及MIM
 	
 	public void htos_samfile(String samfile,String outfile,int seq_length) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(samfile));

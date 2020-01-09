@@ -58,10 +58,10 @@ public class FindNewAddSequenceFirst {
 									bw.newLine();
 								}
 							} catch (InterruptedException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							} catch (ExecutionException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							}
 							break;
@@ -69,7 +69,7 @@ public class FindNewAddSequenceFirst {
 							try {
 								Thread.sleep(1000);
 							} catch (InterruptedException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							}
 						}

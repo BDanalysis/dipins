@@ -58,10 +58,10 @@ public class FindNewAddSequence {
 									bw.newLine();
 								}
 							} catch (InterruptedException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							} catch (ExecutionException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							}
 							break;
@@ -69,7 +69,7 @@ public class FindNewAddSequence {
 							try {
 								Thread.sleep(1000);
 							} catch (InterruptedException e) {
-								// TODO �Զ����ɵ� catch ��
+
 								e.printStackTrace();
 							}
 						}
@@ -82,12 +82,7 @@ public class FindNewAddSequence {
 		}
 		
 		
-		
-		public static void main(String[] args) throws IOException {
-			FindNewAddSequence f=new FindNewAddSequence();
-			f.findnewaddsequence("/media/xie/0009A639000F3A82/ins/102/40_1/14_pos.txt", "/media/xie/0009A639000F3A82/ins/102/40_1/14times.htos.sam", "/media/xie/0009A639000F3A82/ins/102/40_1/14_pos_add.txt",500,50,
-					"//media/xie/0009A639000F3A82/ins/102/40_1/14.fa", "/media/xie/0009A639000F3A82/ins/102/40_1/14_r1.fq", "/media/xie/0009A639000F3A82/ins/102/40_1/14_r2.fq");
-		}
+
 
 }
 

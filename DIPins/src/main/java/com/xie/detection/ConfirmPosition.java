@@ -33,10 +33,7 @@ public class ConfirmPosition {
 		bw.flush();
 		bw.close();
 	}
-	public static void main(String[] args) throws IOException {
-		ConfirmPosition c=new ConfirmPosition();
-		c.confirmposition("/media/xie/0009A639000F3A82/ins/test2/pos_add.txt", "/media/xie/0009A639000F3A82/ins/test2/confirm.txt");
-	}
+
 }
 
 

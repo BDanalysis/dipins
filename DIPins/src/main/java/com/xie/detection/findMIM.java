@@ -32,8 +32,5 @@ public class findMIM {
 		bw.close();
 		
 	}
-	public static void main(String[] args) throws Exception {
-		findMIM fmim = new findMIM();
-		fmim.find_mim("/media/xie/0009A639000F3A82/ins/test_5_6/10times.sam", "/media/xie/0009A639000F3A82/ins/test_5_6/10times.mim.sam");
-	}
+
 }

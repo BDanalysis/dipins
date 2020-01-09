@@ -86,9 +86,6 @@ public class FinalAdd {
 		return true;
 	}
 	
-	public static void main(String[] args) throws Exception {
-		FinalAdd f=new FinalAdd();
-		f.finaladd("/media/xie/0009A639000F3A82/ins/test2/test2.fa", "/media/xie/0009A639000F3A82/ins/test2/pos_add.txt", "/media/xie/0009A639000F3A82/ins/test3/test3.fa");
-	}
+
 }
 

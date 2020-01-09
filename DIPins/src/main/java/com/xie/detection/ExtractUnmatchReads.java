@@ -34,8 +34,5 @@ public class ExtractUnmatchReads {
         	System.out.println(runningStatus);
         }
 	}
-	public static void main(String[] args) {
-		ExtractUnmatchReads e=new ExtractUnmatchReads();
-		e.extractunmatchreads("/media/xie/0009A639000F3A82/ins/test3/unmatchname.txt", "/media/xie/0009A639000F3A82/ins/test3/2.fq", "/media/xie/0009A639000F3A82/ins/test3/22.fq", "/home/xie/eclipse-workspace/ins");
-	}
+
 }
