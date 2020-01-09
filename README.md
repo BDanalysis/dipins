@@ -64,7 +64,7 @@ This directory contains two software that depends on it.
 
 2.2 how to use in Terminal
   
-  bash runTerminal.sh args1 args2 args3 args4 args5  
+  bash runTerminal.sh args1 args2 args3 args4 args5 args6
   
   args1: args1 is the reference sequence 
   
@@ -72,11 +72,13 @@ This directory contains two software that depends on it.
   
   args3: second fastq file
   
-  args4: the configuration file（DIPins.properties in dipins/run directory）.Before running, you need to modify the content in the configuration file
+  args4: the output directory. the result file name is insert_result.txt. 
   
-  args5: the name of your reference sequence (ie the string behind the character '>' in the fasta file) 
+  args5: the configuration file（DIPins.properties in dipins/run directory）.Before running, you need to modify the content in the configuration file
   
-  eg：bash runTerminal.sh ../example/genome.fa ../example/example1_1.fq ../example/example1_2.fq DIPins.properties chr21
+  args6: the name of your reference sequence (ie the string behind the character '>' in the fasta file) 
+  
+  eg：bash runTerminal.sh ../example/genome.fa ../example/example1_1.fq ../example/example1_2.fq ../out DIPins.properties chr21
 
 
 --------------------------------------------------------------------------------
