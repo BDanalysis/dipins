@@ -1,7 +1,6 @@
 package com.xie.detection;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GuiRunUnit {
@@ -10,20 +9,10 @@ public class GuiRunUnit {
     String fastqfile2;
     String output;
     String cache;
-    String bwadir;
-    String seqtkdir;
     String chr;
 
     public void setChr(String chr) {
         this.chr = chr;
-    }
-
-    public void setSeqtkdir(String seqtkdir) {
-        this.seqtkdir = seqtkdir;
-    }
-
-    public void setBwadir(String bwadir) {
-        this.bwadir = bwadir;
     }
 
     public void setFastafile(String fastafile) {
@@ -50,23 +39,20 @@ public class GuiRunUnit {
     public String checkValid(){
         ArrayList<String> al=new ArrayList<>();
         File file=new File(fastafile);
-        if(file.isFile()!=true)
+        if(!file.isFile())
             al.add("fasta file");
         file=new File(fastqfile1);
-        if(file.isFile()!=true)
+        if(!file.isFile())
             al.add("fastq file 1");
         file=new File(fastqfile2);
-        if(file.isFile()!=true)
+        if(!file.isFile())
             al.add("fastq file 2");
         file=new File(output);
-        if(file.isDirectory()!=true)
+        if(!file.isDirectory())
             al.add("output file directory");
         file=new File(cache);
-        if(file.isDirectory()!=true)
+        if(!file.isDirectory())
             al.add("cache file directory");
-        file=new File(bwadir);
-        if(file.isDirectory()!=true)
-            al.add("bwa file directory");
         if(chr==null||chr.length()==0)
             al.add("chr");
         if(al.size()==0)
@@ -77,7 +63,7 @@ public class GuiRunUnit {
                 sb.append(temp);
                 sb.append(",");
             }
-            return sb.toString().substring(0,sb.length()-1)+" is invalid.";
+            return sb.substring(0,sb.length()-1)+" is invalid.";
         }
     }
 
